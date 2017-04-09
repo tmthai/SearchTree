@@ -10,7 +10,7 @@ import javax.swing.JComponent;
 import java.util.List;
 
 /**
- * Created by Cutie Pie on 3/7/2017.
+ * Created by Tam Thai on 4/5/2017.
  */
 
 public class  service {
@@ -54,9 +54,6 @@ public class  service {
     public static boolean searchNode(Node start, String fin)
     {
         //Apply Depth First Search algorithm
-        // Call Node start
-        //Check for children
-        //Each Children, check if they exist the list children
         System.out.println("We visit "+ start.getName());
         if(start.getName().equals(fin)) {
             System.out.println("We found your node in the Tree");
@@ -73,30 +70,16 @@ public class  service {
         return false;
     }
 
-    public static void printTreeSwings(List<Node> listNodes) {
-        CDefaultPrint.
-        List<Node> listchildren = new ArrayList<>();
-        for (int i = 0; i < listNodes.size(); i++) {
-            System.out.print(listNodes.get(i).getName());
-            listchildren.addAll(listNodes.get(i).getChildren());
-        }
-        //System.out.println(Start.getName());
-        //List<Node> children = Start.getChildren();
-        if (!listchildren.isEmpty()) {
-            System.out.println();
-            printTree(listchildren);
-        }
-    }
 
     public static void printTree(List<Node> listNodes)
     {
+        // Use Breath First Search for printing all nodes of each level
         List<Node> listchildren = new ArrayList<>();
         for(int i=0; i<listNodes.size(); i++) {
-            System.out.print(listNodes.get(i).getName());
+            System.out.print(listNodes.get(i).getName()+" ");
             listchildren.addAll(listNodes.get(i).getChildren());
         }
-        //System.out.println(Start.getName());
-        //List<Node> children = Start.getChildren();
+
         if(!listchildren.isEmpty()) {
             System.out.println();
             printTree(listchildren);
