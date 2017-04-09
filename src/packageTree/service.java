@@ -13,16 +13,24 @@ import java.util.List;
  * Created by Tam Thai on 4/5/2017.
  */
 
-public class  service {
+/* Create the application 'service' for searching for a target node in a tree of nodes.
+ *
+ */
+public class service {
 
+    /* start the application to use/test the search algorithm
+     *
+     */
     public static void main(String[] args)
     {
         Node s= Init();
         String f = "Find Me";
         searchNode(s,f);
-        printTree(Arrays.asList(s));
     }
 
+    /* define the search tree
+     *
+     */
     public static Node Init()
     {
         Node s = new Node("Start");
@@ -35,7 +43,6 @@ public class  service {
         Node FindMe = new Node("Find Me");
         Node C2 = new Node("C2");
         Node D1 = new Node("D1");
-
 
         s.getChildren().add(A1);
         s.getChildren().add(A2);
@@ -51,12 +58,14 @@ public class  service {
 
     }
 
+    /* Method for recursively searching the tree,
+     * and printing out the name of each node visited until target node is found.
+     */
     public static boolean searchNode(Node start, String fin)
     {
         //Apply Depth First Search algorithm
-        System.out.println("We visit "+ start.getName());
+        System.out.println(start.getName());
         if(start.getName().equals(fin)) {
-            System.out.println("We found your node in the Tree");
             return true;
         }
         List<Node> children = start.getChildren();
@@ -64,25 +73,9 @@ public class  service {
             for(int i=0; i<children.size(); i++)
             {
                 if(searchNode(children.get(i),fin))
-                   return true;
+                    return true;
             }
         }
         return false;
-    }
-
-
-    public static void printTree(List<Node> listNodes)
-    {
-        // Use Breath First Search for printing all nodes of each level
-        List<Node> listchildren = new ArrayList<>();
-        for(int i=0; i<listNodes.size(); i++) {
-            System.out.print(listNodes.get(i).getName()+" ");
-            listchildren.addAll(listNodes.get(i).getChildren());
-        }
-
-        if(!listchildren.isEmpty()) {
-            System.out.println();
-            printTree(listchildren);
-        }
     }
 }
